@@ -1,11 +1,11 @@
-import CardContainer from './CardContainer';
+import Body from './Body';
 import Header from './Header'
 import './style.css';
 const App = () => {
     return(
         <div className="app-container">
             <Header />
-            <CardContainer />
+            <Body />
              {/* Footer */}
         </div>
     )
