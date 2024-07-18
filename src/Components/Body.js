@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "./Card";
-// import restaurants from "../../cardsData";
+import Shiver from './Shiver';
 
 const Body = () => {
   const [restaurantData, setRestarauntData] = useState([]);
@@ -20,12 +20,16 @@ const Body = () => {
     setRestarauntData(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
     console.log(restaurantData);
   }
+
+  if(restaurantData.length == 0){
+    return <Shiver />
+  }
   
   return (
     <div>
       <button
         onClick={() => {
-          const filteredRestaurantData = restaurants.filter((res) => res.info.avgRating > 4.3);
+          const filteredRestaurantData = restaurantData.filter((res) => res.info.avgRating > 4.3);
           setRestarauntData(filteredRestaurantData);
           console.log(filteredRestaurantData)
         }}
