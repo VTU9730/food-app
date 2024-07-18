@@ -1,10 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "./Card";
-import restaurants from "./cardsData";
+// import restaurants from "../../cardsData";
 
 const Body = () => {
-  const [restaurantData, setRestarauntData] = useState(restaurants);
-  console.log("clicked");
+  const [restaurantData, setRestarauntData] = useState([]);
+
+  useEffect(()=>{
+
+    fetchData()
+
+  },[])
+
+  async function fetchData(){
+
+    const data = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.406498&lng=78.47724389999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTINGl")
+
+    const json = await data.json()
+
+    setRestarauntData(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+    console.log(restaurantData);
+  }
+  
   return (
     <div>
       <button
