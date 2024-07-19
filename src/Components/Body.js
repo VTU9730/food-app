@@ -5,6 +5,10 @@ import Shiver from './Shiver';
 const Body = () => {
   const [restaurantData, setRestarauntData] = useState([]);
 
+  const [filteredRestaurant, setFilteredRestaurant] = useState([])
+
+  const [searchText, setSearchText] = useState('')
+
   useEffect(()=>{
 
     fetchData()
@@ -17,9 +21,11 @@ const Body = () => {
 
     const json = await data.json()
 
-    setRestarauntData(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-    console.log(restaurantData);
+    setRestarauntData(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   }
+
+  console.log(searchText)
 
   if(restaurantData.length == 0){
     return <Shiver />
@@ -27,17 +33,30 @@ const Body = () => {
   
   return (
     <div>
-      <button
-        onClick={() => {
-          const filteredRestaurantData = restaurantData.filter((res) => res.info.avgRating > 4.3);
-          setRestarauntData(filteredRestaurantData);
-          console.log(filteredRestaurantData)
-        }}
-      >
-        Top Reated Restaurant
-      </button>
+      <div className="search-container">
+        <div>
+          <input type="search" onChange={(e) => setSearchText(e.target.value)} value = {searchText} />
+          <button onClick={()=>{
+            const filteredRestaurantData = restaurantData.filter(res => res.info.name.toLocaleLowerCase().includes(searchText.toLocaleLowerCase()))
+            setFilteredRestaurant(filteredRestaurantData);
+            console.log(filteredRestaurantData)
+          }}>Search</button>
+        </div>
+        <div>
+          <button
+            onClick={() => {
+              const filteredRestaurantData = restaurantData.filter((res) => res.info.avgRating > 4.3);
+              setFilteredRestaurant(filteredRestaurantData);
+              console.log(filteredRestaurantData)
+            }}
+          >
+            Top Reated Restaurant
+          </button>
+        </div>
+      </div>
+      
       <div className="cards-container">
-        {restaurantData.map((restaurant) => (
+        {filteredRestaurant.map((restaurant) => (
           <div key={restaurant.info.id}>
             {" "}
             <Card restaurant={restaurant} />
