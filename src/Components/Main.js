@@ -1,7 +1,7 @@
 import Body from './Body';
 import Header from './Header'
-import './style.css';
-const App = () => {
+import '../../style.css';
+const Main = () => {
     return(
         <div className="app-container">
             <Header />
@@ -11,4 +11,4 @@ const App = () => {
     )
 }
 
-export default App;
+export default Main;

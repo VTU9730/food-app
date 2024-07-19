@@ -26,7 +26,7 @@
 
 .card-container{
     padding:30px;
-    width:300px;
+    width:200px;
 }
 
 .card-container:hover{
@@ -35,7 +35,24 @@
 }
 
 .res-logo{
-    width:300px;
-    height:350px;
+    width:200px;
+    height:250px;
     object-fit:cover;
+}
+
+.shiver-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shiver{
+    width:200px;
+    height:250px;
+    margin: 30px;
+    background-color: rgb(184, 203, 220);
+}
+
+.search-container{
+    display: flex;
+    justify-content: center;
 }
