@@ -1,5 +1,5 @@
 import Body from './Body';
-import Header from '../../Header'
+import Header from './Header'
 import '../../style.css';
 const Main = () => {
     return(
