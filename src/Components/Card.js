@@ -1,5 +1,7 @@
 const Card = (props) => {
-    const {cloudinaryImageId, avgRatingString, locality, name, cuisines, id} = props.restaurant.info
+    const {cloudinaryImageId, avgRatingString, locality, name, cuisines, id} = props.restaurant.info;
+    
+    console.log("hello");
     return(
         <div className="card-container">
             <img className="res-logo" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+cloudinaryImageId} />
