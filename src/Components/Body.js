@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Card from "./Card";
 import Shiver from './Shiver';
 
@@ -59,7 +60,7 @@ const Body = () => {
         {filteredRestaurant.map((restaurant) => (
           <div key={restaurant.info.id}>
             {" "}
-            <Card restaurant={restaurant} />
+            <Link to={"restaurant/"+restaurant.info.id}><Card restaurant={restaurant} /></Link>
           </div>
         ))}
       </div>
