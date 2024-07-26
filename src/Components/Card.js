@@ -1,5 +1,4 @@
 const Card = (props) => {
-    console.log(props);
     const {cloudinaryImageId, avgRatingString, locality, name, cuisines, id} = props.restaurant.info;
     return(
         <div className="w-52 p-2 h-full bg-slate-200 hover:bg-slate-400">

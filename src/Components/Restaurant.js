@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+
 // import Shiver from "./Shiver";
+import Category from "./Category";
 
 const Restaurant = () => {
 
     const [resInfo, setResInfo] = useState(null)
+    const [restaurantName, setRestaurantName] = useState('')
+    const [items, setItems] = useState([])
     const {id} = useParams()
 
     useEffect(()=>{
@@ -14,19 +18,18 @@ const Restaurant = () => {
     const fetchRestaurant = async () => {
         const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.4643489&lng=78.3755955&restaurantId="+id)
         const json = await data.json()
-        setResInfo(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR)
+        setRestaurantName(json?.data?.cards[0]?.card?.card?.text)
+        setResInfo(json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards)
+
+        const listItems = json.data?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards
+        const restaurantItems = listItems.filter((item) => item?.card?.card?.["@type"] == "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory") 
+        setItems(restaurantItems)
     }
-    // const {name, avgRating, locality, costForTwoMessage} = resInfo || {}
-   
-    // if(resInfo === null) return <Shiver />
-        console.log(resInfo);
+
     return(
-        <div>
-            <h1>{resInfo?.card?.card?.card?.text}</h1>
-            {/* <h1>{name}</h1>
-            <h1>{locality}</h1>
-            <h2>{avgRating}</h2>
-            <h3>{costForTwoMessage}</h3> */}
+        <div className="w-6/12 m-auto">
+            <h1 className="font-bold text-center my-4 text-3xl">{restaurantName}</h1>
+            {items && items.map(item => <Category categoryData={item} />)}
         </div>
     )
 }
