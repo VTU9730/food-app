@@ -9,6 +9,7 @@ const Restaurant = () => {
     const [resInfo, setResInfo] = useState(null)
     const [restaurantName, setRestaurantName] = useState('')
     const [items, setItems] = useState([])
+    const [showItems, setShowItems] = useState(null)
     const {id} = useParams()
 
     useEffect(()=>{
@@ -29,7 +30,7 @@ const Restaurant = () => {
     return(
         <div className="w-6/12 m-auto">
             <h1 className="font-bold text-center my-4 text-3xl">{restaurantName}</h1>
-            {items && items.map(item => <Category categoryData={item} />)}
+            {items && items.map((item, index) => <Category categoryData={item} showItems = {showItems==index} setShowItems = {() => setShowItems(() => showItems == index? null : index)} />)}
         </div>
     )
 }

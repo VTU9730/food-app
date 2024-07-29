@@ -1,15 +1,15 @@
 import { useState } from "react";
 import Item from "./Item";
 
-const Category = ({categoryData}) => {
+const Category = ({categoryData, showItems, setShowItems}) => {
     const [category,setCategory] = useState(categoryData)
-    const [showItems, setShowItems] = useState(false)
+    // const [showItems, setShowItems] = useState(false)
    
 
     const {itemCards} = category?.card?.card
 
     const handleClick = () => {
-        setShowItems(!showItems)
+        setShowItems()
     }
     return(
         <div >
@@ -20,7 +20,6 @@ const Category = ({categoryData}) => {
             <hr />
             {showItems&&<Item itemCards={itemCards} />}
         </div>
-     
     )
 }
 
