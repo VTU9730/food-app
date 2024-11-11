@@ -29,8 +29,6 @@ const Body = () => {
     );
   }
 
-  console.log(searchText);
-
   if (restaurantData.length == 0) {
     return <Shiver />;
   }

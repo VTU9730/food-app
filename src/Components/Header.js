@@ -1,6 +1,17 @@
-
+import { useContext, useEffect } from "react";
+import userContext from "./userContext";
 import { Link } from "react-router-dom";
 const Header = () => {
+    const {userContextData, setUserContextData} = useContext(userContext)
+
+    useEffect(() => {
+        setUserContextData({...userContextData, header:'header'})
+    },[])
+
+    
+
+    
+
     return(
         <div className="flex justify-between items-center ">
             <div className="logo w-28">

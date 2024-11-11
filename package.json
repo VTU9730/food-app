@@ -2,10 +2,13 @@
   "name": "food-app",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://vtu9730.github.io/food-app/",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +19,7 @@
     "react-router-dom": "^6.25.1"
   },
   "devDependencies": {
+    "gh-pages": "^6.2.0",
     "parcel": "^2.12.0",
     "process": "^0.11.10",
     "tailwindcss": "^3.4.6"
