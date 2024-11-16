@@ -3029,12 +3029,14 @@ const appRoter = (0, _reactRouterDom.createBrowserRouter)([
             columnNumber: 23
         }, undefined)
     }
-]);
+], {
+    basename: "/food-app" // replace 'your-repo-name' with your actual GitHub repository name
+});
 root.render(/*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _reactRouterDom.RouterProvider), {
     router: appRoter
 }, void 0, false, {
     fileName: "app.js",
-    lineNumber: 46,
+    lineNumber: 49,
     columnNumber: 13
 }, undefined));
 
